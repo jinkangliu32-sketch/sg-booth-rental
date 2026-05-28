@@ -11,11 +11,11 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;700;800;900&family=Playfair+Display:wght@800&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;700;800;900&family=Fraunces:opsz,wght@9..144,800;9..144,900&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css" />
-    <script src="script.js" defer></script>
+    <link rel="stylesheet" href="styles.css?v=20260528-simple-dates" />
+    <script src="script.js?v=20260528-simple-dates" defer></script>
   </head>
   <body>
     <header class="site-header">
@@ -73,64 +73,45 @@
       </section>
 
       <section class="quick-contact" aria-label="Contact channels">
-        <a href="tel:0103787851">
+        <a class="contact-tile whatsapp-tile" href="#contact">
+          <span class="tile-label">WhatsApp</span>
           <strong>0103787851</strong>
-          <span>WhatsApp test number</span>
+          <span class="tile-note">Send booth enquiry</span>
         </a>
-        <a href="tel:+6593806939">
-          <strong>9380 6939</strong>
-          <span>Booking hotline</span>
-        </a>
-        <a href="https://www.instagram.com/sg_boothrental/" target="_blank" rel="noreferrer">
+        <a class="contact-tile" href="https://www.instagram.com/sg_boothrental/">
+          <span class="tile-label">Instagram</span>
           <strong>Instagram</strong>
-          <span>@sg_boothrental</span>
+          <span class="tile-note">@sg_boothrental</span>
         </a>
-        <a href="https://www.tiktok.com/@sg_boothrental" target="_blank" rel="noreferrer">
+        <a class="contact-tile" href="https://www.tiktok.com/@sg_boothrental">
+          <span class="tile-label">TikTok</span>
           <strong>TikTok</strong>
-          <span>@sg_boothrental</span>
+          <span class="tile-note">@sg_boothrental</span>
         </a>
       </section>
 
       <section class="section festival-dates" id="dates">
         <div class="section-heading">
-          <p class="eyebrow">Mid-Autumn Festival</p>
-          <h2>Event dates & venues</h2>
-          <p>&#20013;&#31179;&#33410;&#26723;&#26399;&#19982;&#22320;&#28857;</p>
+          <p class="eyebrow">Mall Booth Calendar</p>
+          <h2>Browse event dates by month</h2>
+          <p>Choose a month, then tap a date card to enquire about that booth.</p>
         </div>
-        <div class="dates-grid" aria-label="Mid-Autumn event dates and venues">
-          <article class="date-card">
-            <span>31/8 - 27/9</span>
-            <strong>Compass One</strong>
-          </article>
-          <article class="date-card">
-            <span>16/9 - 25/9</span>
-            <strong>Bedok Mall</strong>
-          </article>
-          <article class="date-card">
-            <span>31/8 - 27/9</span>
-            <strong>AMK Hub B2</strong>
-          </article>
-          <article class="date-card">
-            <span>10/9 - 23/9</span>
-            <strong>Hillion Mall</strong>
-          </article>
-          <article class="date-card">
-            <span>7/9 - 25/9</span>
-            <strong>Lot One</strong>
-          </article>
-          <article class="date-card">
-            <span>14/9 - 27/9</span>
-            <strong>White Sands</strong>
-          </article>
-          <article class="date-card">
-            <span>7/9 - 25/9</span>
-            <strong>Westgate</strong>
-          </article>
-          <article class="date-card">
-            <span>14/9 - 27/9</span>
-            <strong>Westmall</strong>
-          </article>
+        <div class="calendar-bar">
+          <div class="month-tabs" role="tablist" aria-label="Select booth calendar month">
+            <button class="month-tab active" type="button" data-month="jun">June</button>
+            <button class="month-tab" type="button" data-month="jul">July</button>
+            <button class="month-tab" type="button" data-month="aug">August</button>
+            <button class="month-tab" type="button" data-month="sep">September</button>
+            <button class="month-tab" type="button" data-month="oct">October</button>
+            <button class="month-tab" type="button" data-month="nov">November</button>
+            <button class="month-tab" type="button" data-month="dec">December</button>
+          </div>
+          <div class="location-count" aria-live="polite">
+            <strong>0</strong>
+            <span>locations</span>
+          </div>
         </div>
+        <div class="availability-list" aria-live="polite"></div>
       </section>
 
       <section class="section spaces" id="spaces">
@@ -201,10 +182,9 @@
             <strong>0103787851</strong>.
           </p>
           <div class="contact-lines">
-            <a href="tel:0103787851">0103787851 (Test Number)</a>
-            <a href="tel:+6593806939">9380 6939</a>
-            <a href="https://www.instagram.com/sg_boothrental/" target="_blank" rel="noreferrer">Instagram: @sg_boothrental</a>
-            <a href="https://www.tiktok.com/@sg_boothrental" target="_blank" rel="noreferrer">TikTok: @sg_boothrental</a>
+            <a href="#contact">0103787851 (WhatsApp enquiry form)</a>
+            <a href="https://www.instagram.com/sg_boothrental/">Instagram: @sg_boothrental</a>
+            <a href="https://www.tiktok.com/@sg_boothrental">TikTok: @sg_boothrental</a>
           </div>
         </div>
         <form class="contact-form">
