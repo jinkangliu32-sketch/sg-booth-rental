@@ -3,12 +3,17 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>SG Booth Rental | Bazaar, Pop-Up & Event Booth Spaces</title>
+    <title>SG Booth Rental | Event Booth Spaces in Singapore</title>
     <meta
       name="description"
-      content="Book booth spaces for bazaars, pop-ups, food fairs, roadshows, and community events with SG Booth Rental."
+      content="SG Booth Rental helps vendors book bazaar, pop-up, food fair, and Mid-Autumn booth spaces across Singapore malls."
     />
-    <link rel="preconnect" href="https://images.unsplash.com" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;700;800;900&family=Playfair+Display:wght@800&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="styles.css" />
     <script src="script.js" defer></script>
   </head>
@@ -20,13 +25,11 @@
       </a>
       <nav class="nav" aria-label="Main navigation">
         <a href="#dates">Dates</a>
-        <a href="#spaces">Spaces</a>
-        <a href="#packages">Packages</a>
-        <a href="#events">Events</a>
-        <a href="#faq">FAQ</a>
+        <a href="#spaces">Booths</a>
+        <a href="#events">Gallery</a>
         <a href="#contact">Contact</a>
       </nav>
-      <a class="header-action" href="https://wa.me/60103787851" target="_blank" rel="noreferrer">WhatsApp</a>
+      <a class="header-action" href="#contact">Enquire</a>
       <button class="menu-button" type="button" aria-label="Open menu" aria-expanded="false">
         <span></span>
         <span></span>
@@ -35,54 +38,44 @@
 
     <main id="top">
       <section class="hero" aria-label="SG Booth Rental">
-        <div class="hero-image" aria-hidden="true"></div>
-        <div class="hero-overlay"></div>
-        <div class="hero-grid">
-          <div class="hero-content">
-            <div class="cover-logo" aria-label="SG Booth Rental logo">
-              <span class="cover-sg">SG</span>
-              <span class="cover-name">BOOTH RENTAL</span>
-            </div>
-            <p class="eyebrow">Singapore Event Organizer</p>
-            <h1>Booth spaces for vendors ready to sell.</h1>
-            <p class="hero-copy">
-              SG Booth Rental helps vendors book booth spaces for bazaars, pop-ups, food fairs, roadshows, and weekend
-              markets.
-            </p>
-            <div class="hero-highlights" aria-label="Booking highlights">
-              <span>Mid-Autumn booking</span>
-              <span>8 mall venues</span>
-              <span>WhatsApp reply</span>
-            </div>
-            <div class="hero-actions">
-              <a class="button primary" href="#contact">Check Availability</a>
-              <a class="button secondary" href="tel:0103787851">Call 0103787851</a>
-            </div>
+        <div class="hero-media" aria-hidden="true"></div>
+        <div class="hero-content">
+          <div class="hero-logo" aria-label="SG Booth Rental logo">
+            <span class="hero-logo-sg">SG</span>
+            <span class="hero-logo-name">BOOTH RENTAL</span>
           </div>
-
-          <aside class="availability-panel" aria-label="Booking summary">
-            <span class="panel-kicker">Now Open</span>
-            <h2>Vendor booth enquiries</h2>
-            <p>Send your product type, preferred dates, and booth size. We will reply with suitable spaces.</p>
-            <div class="panel-stat">
-              <div>
-                <strong>31/8 - 27/9</strong>
-                <span>Mid-Autumn period</span>
-              </div>
-              <div>
-                <strong>8</strong>
-                <span>mall venues</span>
-              </div>
-            </div>
-            <a class="button panel-button" href="#contact">Send Details</a>
-          </aside>
+          <p class="eyebrow">Mid-Autumn booth spaces now open</p>
+          <h1>SG Booth Rental</h1>
+          <p class="hero-copy">
+            Simple booth booking for bazaars, pop-ups, food fairs, handmade products, gifts, and retail displays across
+            busy Singapore mall locations.
+          </p>
+          <div class="hero-actions">
+            <a class="button primary" href="#contact">Check Availability</a>
+            <a class="button secondary" href="#dates">View Event Dates</a>
+          </div>
+          <div class="hero-proof" aria-label="Booking highlights">
+            <span>31/8 - 27/9</span>
+            <span>8 mall venues</span>
+            <span>WhatsApp enquiry</span>
+          </div>
         </div>
+        <aside class="booking-card" aria-label="Booking summary">
+          <span>Featured Season</span>
+          <h2>Mid-Autumn booth booking</h2>
+          <p>Tell us your product category and preferred venue. We will reply with suitable booth options.</p>
+          <div class="booking-stats">
+            <strong>8</strong>
+            <small>mall venues</small>
+          </div>
+          <a class="button card-button" href="#contact">Send Details</a>
+        </aside>
       </section>
 
-      <section class="quick-contact" aria-label="Booking channels">
+      <section class="quick-contact" aria-label="Contact channels">
         <a href="tel:0103787851">
           <strong>0103787851</strong>
-          <span>Test WhatsApp number</span>
+          <span>WhatsApp test number</span>
         </a>
         <a href="tel:+6593806939">
           <strong>9380 6939</strong>
@@ -99,12 +92,10 @@
       </section>
 
       <section class="section festival-dates" id="dates">
-        <div class="section-heading compact-heading">
-          <div>
-            <p class="eyebrow">Mid-Autumn Festival</p>
-            <h2>Event dates & venues</h2>
-          </div>
-          <p class="dates-note">中秋节档期与地点</p>
+        <div class="section-heading">
+          <p class="eyebrow">Mid-Autumn Festival</p>
+          <h2>Event dates & venues</h2>
+          <p>&#20013;&#31179;&#33410;&#26723;&#26399;&#19982;&#22320;&#28857;</p>
         </div>
         <div class="dates-grid" aria-label="Mid-Autumn event dates and venues">
           <article class="date-card">
@@ -142,120 +133,44 @@
         </div>
       </section>
 
-      <section class="section intro">
-        <div class="section-heading">
-          <p class="eyebrow">Booth Spaces Open For Booking</p>
-          <h2>Find the right crowd, location, and event format for your product.</h2>
-        </div>
-        <p>
-          Whether you sell snacks, fashion, beauty, gifts, handmade items, or services, we help match your booth needs
-          with suitable event opportunities. The goal is simple: clear information, quick confirmation, and a smooth
-          setup on event day.
-        </p>
-      </section>
-
       <section class="section spaces" id="spaces">
         <div class="section-heading">
-          <p class="eyebrow">Spaces</p>
-          <h2>Booth formats vendors commonly request</h2>
-        </div>
-        <div class="service-grid">
-          <article class="service-card">
-            <span class="icon">01</span>
-            <h3>Bazaar Booths</h3>
-            <p>High-energy selling spaces for lifestyle, fashion, accessories, gifts, and beauty vendors.</p>
-          </article>
-          <article class="service-card">
-            <span class="icon">02</span>
-            <h3>Pop-Up Retail</h3>
-            <p>Short-term retail exposure for launches, brand activations, and weekend sales campaigns.</p>
-          </article>
-          <article class="service-card">
-            <span class="icon">03</span>
-            <h3>Food Fair Stalls</h3>
-            <p>Spaces for packaged food, drinks, snacks, desserts, festive treats, and sampling booths.</p>
-          </article>
-          <article class="service-card">
-            <span class="icon">04</span>
-            <h3>Roadshows</h3>
-            <p>Flexible spaces for lead generation, awareness campaigns, product demos, and direct sales.</p>
-          </article>
-        </div>
-      </section>
-
-      <section class="section packages" id="packages">
-        <div class="section-heading compact-heading">
-          <p class="eyebrow">Packages</p>
-          <h2>Pick a booth enquiry type</h2>
+          <p class="eyebrow">Booth Options</p>
+          <h2>Choose the booth type that fits your product</h2>
         </div>
         <div class="package-grid">
           <article class="package-card">
             <span>Starter</span>
             <h3>Weekend Booth</h3>
-            <p>For vendors testing a product or joining one short event.</p>
-            <ul>
-              <li>Short event duration</li>
-              <li>Simple setup needs</li>
-              <li>Good for new vendors</li>
-            </ul>
+            <p>For new vendors testing products at a short bazaar or pop-up event.</p>
             <button class="button outline package-select" type="button" data-package="Weekend Booth">Select</button>
           </article>
           <article class="package-card featured">
             <span>Popular</span>
             <h3>Bazaar Vendor</h3>
-            <p>For vendors who want recurring fair, bazaar, and pop-up opportunities.</p>
-            <ul>
-              <li>Multiple date options</li>
-              <li>Vendor category matching</li>
-              <li>WhatsApp booking support</li>
-            </ul>
+            <p>For food, gift, retail, and lifestyle vendors looking for busy mall traffic.</p>
             <button class="button primary package-select" type="button" data-package="Bazaar Vendor">Select</button>
           </article>
           <article class="package-card">
             <span>Brand</span>
             <h3>Roadshow Space</h3>
-            <p>For brands running demos, campaigns, sign-ups, or sampling booths.</p>
-            <ul>
-              <li>Campaign-focused setup</li>
-              <li>Lead generation friendly</li>
-              <li>Suitable for teams</li>
-            </ul>
+            <p>For brands running sampling, demos, sign-ups, awareness, or sales campaigns.</p>
             <button class="button outline package-select" type="button" data-package="Roadshow Space">Select</button>
           </article>
         </div>
       </section>
 
-      <section class="image-band" aria-label="Vendor event setup">
-        <img
-          src="assets/mall-event-crowd.jpeg"
-          alt="Busy mall event with vendor booths and shoppers"
-        />
-        <div>
-          <p class="eyebrow">Why Vendors Book With Us</p>
-          <h2>Real mall traffic, practical booth layouts, and ready vendor spaces.</h2>
-          <ul>
-            <li>Tell us your category, budget, booth size, and preferred dates.</li>
-            <li>Receive available options with event type, location notes, and booth terms.</li>
-            <li>Prepare for event day with setup timing, rules, and payment details.</li>
-          </ul>
-        </div>
-      </section>
-
       <section class="section events" id="events">
         <div class="section-heading">
-          <p class="eyebrow">Events</p>
-          <h2>Popular event opportunities</h2>
+          <p class="eyebrow">Real Booth Setups</p>
+          <h2>Clear displays, real crowds, practical spaces</h2>
         </div>
         <div class="case-grid">
           <article class="case-card">
-            <img
-              src="assets/booth-sinpopo.jpeg"
-              alt="Sinpopo booth setup with cake display"
-            />
+            <img src="assets/booth-sinpopo.jpeg" alt="Sinpopo booth setup with cake display" />
             <div>
               <span>Food & Dessert</span>
               <h3>Premium Booth Setup</h3>
-              <p>Decorated booth structure with product display area, lighting, signage, and strong front-facing appeal.</p>
             </div>
           </article>
           <article class="case-card">
@@ -265,74 +180,15 @@
             <div>
               <span>Mall Event</span>
               <h3>High-Traffic Bazaar</h3>
-              <p>Vendor booths positioned inside a busy mall environment with shoppers, food stalls, and family crowds.</p>
             </div>
           </article>
           <article class="case-card">
-            <img
-              src="assets/booth-handicraft.jpeg"
-              alt="Manman Handicraft booth with colorful handmade products"
-            />
+            <img src="assets/booth-handicraft.jpeg" alt="Manman Handicraft booth with colorful handmade products" />
             <div>
               <span>Gifts & Retail</span>
               <h3>Product Display Booth</h3>
-              <p>Retail booth suitable for packaged goods, gifts, festive products, and curated shelf displays.</p>
             </div>
           </article>
-        </div>
-      </section>
-
-      <section class="section vendors" id="vendors">
-        <div class="section-heading">
-          <p class="eyebrow">Vendor Journey</p>
-          <h2>How booking works</h2>
-        </div>
-        <ol class="timeline">
-          <li>
-            <span>01</span>
-            <h3>Send Details</h3>
-            <p>Share your product type, preferred dates, booth size, and budget range.</p>
-          </li>
-          <li>
-            <span>02</span>
-            <h3>Check Options</h3>
-            <p>We share suitable event spaces, available dates, and key booth terms.</p>
-          </li>
-          <li>
-            <span>03</span>
-            <h3>Confirm Booking</h3>
-            <p>Reserve your booth after confirming the event, rate, setup details, and requirements.</p>
-          </li>
-          <li>
-            <span>04</span>
-            <h3>Show Up Ready</h3>
-            <p>Prepare your display, stock, payment methods, and arrival timing for event day.</p>
-          </li>
-        </ol>
-      </section>
-
-      <section class="section faq" id="faq">
-        <div class="section-heading compact-heading">
-          <p class="eyebrow">FAQ</p>
-          <h2>Common vendor questions</h2>
-        </div>
-        <div class="faq-list">
-          <details open>
-            <summary>What information should I send first?</summary>
-            <p>Send your product category, preferred dates, booth size, setup needs, and contact number.</p>
-          </details>
-          <details>
-            <summary>Can new vendors apply?</summary>
-            <p>Yes. New vendors can send product details and photos so we can suggest a suitable booth format.</p>
-          </details>
-          <details>
-            <summary>Will the form send automatically?</summary>
-            <p>The form opens WhatsApp with your enquiry text. You still need to press send inside WhatsApp.</p>
-          </details>
-          <details>
-            <summary>Can I book more than one date?</summary>
-            <p>Yes. Include your preferred month or date range in the enquiry so available options can be checked.</p>
-          </details>
         </div>
       </section>
 
@@ -365,12 +221,12 @@
             <input type="text" name="category" placeholder="Fashion, food, gifts, services..." required />
           </label>
           <label>
-            Preferred dates
-            <input type="text" name="dates" placeholder="Weekend, month, or exact date" />
+            Preferred venue / date
+            <input type="text" name="dates" placeholder="Compass One, 31/8 - 27/9..." />
           </label>
           <label>
-            Selected package
-            <input type="text" name="package" placeholder="Choose a package above or type here" />
+            Selected booth type
+            <input type="text" name="package" placeholder="Choose a booth type above or type here" />
           </label>
           <label>
             Message
@@ -382,9 +238,7 @@
       </section>
     </main>
 
-    <a class="floating-whatsapp" href="#contact" aria-label="Go to WhatsApp enquiry form">
-      WhatsApp
-    </a>
+    <a class="floating-whatsapp" href="#contact" aria-label="Go to WhatsApp enquiry form">WhatsApp</a>
 
     <footer class="footer">
       <span>&copy; 2026 SG Booth Rental</span>
