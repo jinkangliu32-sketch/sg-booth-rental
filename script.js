@@ -1,9 +1,9 @@
 const header = document.querySelector(".site-header");
 const menuButton = document.querySelector(".menu-button");
-const form = document.querySelector(".contact-form");
-const note = document.querySelector(".form-note");
-const dateInput = document.querySelector('input[name="dates"]');
-const packageInput = document.querySelector('input[name="package"]');
+const bookingForm = document.querySelector(".booking-form");
+const bookingNote = document.querySelector(".booking-note");
+const bookingDateInput = document.querySelector('.booking-form [name="dates"]');
+const bookingPackageInput = document.querySelector('.booking-form [name="package"]');
 const packageButtons = document.querySelectorAll(".package-select");
 const floatingWhatsapp = document.querySelector(".floating-whatsapp");
 const whatsappNumber = "6594557473";
@@ -220,11 +220,14 @@ document.querySelectorAll(".nav a").forEach((link) => {
   });
 });
 
-document.querySelectorAll('a[href="#contact"]').forEach((link) => {
+document.querySelectorAll('a[href="#contact"], a[href="#booking"], a[href="#dates"]').forEach((link) => {
   link.addEventListener("click", (event) => {
+    const target = document.querySelector(link.getAttribute("href"));
+    if (!target) return;
+
     event.preventDefault();
-    document.querySelector("#contact").scrollIntoView({ behavior: "smooth" });
-    history.replaceState(null, "", "#contact");
+    target.scrollIntoView({ behavior: "smooth" });
+    history.replaceState(null, "", link.getAttribute("href"));
   });
 });
 
@@ -269,6 +272,36 @@ function prepareAvailabilityItems(items) {
   }, []);
 }
 
+function setSelectValue(select, value) {
+  if (!select) return;
+
+  const hasOption = Array.from(select.options).some((option) => option.value === value);
+
+  if (!hasOption) {
+    select.add(new Option(value, value));
+  }
+
+  select.value = value;
+}
+
+function populateBookingDateOptions() {
+  if (!bookingDateInput || bookingDateInput.tagName !== "SELECT") return;
+
+  const currentValue = bookingDateInput.value;
+  const seen = new Set();
+
+  Object.values(monthlyAvailability).forEach((month) => {
+    prepareAvailabilityItems(month.items || []).forEach((item) => {
+      const value = `${item.venue} - ${item.date}`;
+      if (seen.has(value)) return;
+      seen.add(value);
+      bookingDateInput.add(new Option(value, value));
+    });
+  });
+
+  bookingDateInput.value = currentValue;
+}
+
 function groupByDate(items) {
   return items.reduce((groups, item) => {
     const existing = groups.find((group) => group.date === item.date);
@@ -297,7 +330,7 @@ function renderAvailability(month) {
   if (!data || items.length === 0) {
     availabilityList.innerHTML = `
       <div class="availability-empty">
-        <span>Upcoming Venue Updates</span>
+        <span>Upcoming Locations</span>
         <h3>New locations released monthly.</h3>
         <p>Mid-Autumn 2026 venues are updating soon. Send us your preferred month and product category.</p>
       </div>
@@ -336,23 +369,37 @@ availabilityList?.addEventListener("click", (event) => {
   const button = event.target.closest(".availability-select");
   if (!button) return;
 
-  dateInput.value = `${button.dataset.venue} - ${button.dataset.date}`;
-  document.querySelector("#contact").scrollIntoView({ behavior: "smooth" });
-  history.replaceState(null, "", "#contact");
-  note.textContent = "Selected booth filled in. Complete the form to send on WhatsApp.";
+  const selectedDate = `${button.dataset.venue} - ${button.dataset.date}`;
+
+  if (bookingDateInput) setSelectValue(bookingDateInput, selectedDate);
+
+  document.querySelector("#booking").scrollIntoView({ behavior: "smooth" });
+  history.replaceState(null, "", "#booking");
+
+  if (bookingNote) {
+    bookingNote.textContent = "Selected booth filled in. Complete booking details to request deposit instructions.";
+  }
 });
 
+populateBookingDateOptions();
 renderAvailability("jun");
 
 if (floatingWhatsapp) {
-  floatingWhatsapp.href = "#contact";
+  floatingWhatsapp.href = "#booking";
 }
 
 packageButtons.forEach((button) => {
   button.addEventListener("click", () => {
-    packageInput.value = button.dataset.package || "";
-    document.querySelector("#contact").scrollIntoView({ behavior: "smooth" });
-    note.textContent = `${packageInput.value} selected. Complete the form to send on WhatsApp.`;
+    const selectedPackage = button.dataset.package || "";
+
+    if (bookingPackageInput) setSelectValue(bookingPackageInput, selectedPackage);
+
+    document.querySelector("#booking").scrollIntoView({ behavior: "smooth" });
+    history.replaceState(null, "", "#booking");
+
+    if (bookingNote) {
+      bookingNote.textContent = `${selectedPackage} selected. Complete booking details to send on WhatsApp.`;
+    }
   });
 });
 
@@ -373,35 +420,44 @@ faqQuestions.forEach((button) => {
   });
 });
 
-form.addEventListener("submit", (event) => {
-  event.preventDefault();
-
-  const formData = new FormData(form);
-  const getValue = (name) => formData.get(name)?.toString().trim() || "-";
-  const message = [
-    "Hi SG Booth Rental, I would like to enquire about a booth space.",
-    "",
-    `Name: ${getValue("name")}`,
-    `Contact: ${getValue("contact")}`,
-    `Product category: ${getValue("category")}`,
-    `Preferred dates: ${getValue("dates")}`,
-    `Selected package: ${getValue("package")}`,
-    `Message: ${getValue("message")}`,
-  ].join("\n");
-
+function openWhatsapp(message, statusElement, fallbackText) {
   const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
   const whatsappWindow = window.open(whatsappUrl, "_blank", "noopener,noreferrer");
 
+  if (!statusElement) return;
+
   if (whatsappWindow) {
-    note.textContent = "Opening WhatsApp with your enquiry...";
+    statusElement.textContent = "Opening WhatsApp with your details...";
   } else {
-    note.replaceChildren("WhatsApp did not open. ", Object.assign(document.createElement("a"), {
+    statusElement.replaceChildren("WhatsApp did not open. ", Object.assign(document.createElement("a"), {
       href: whatsappUrl,
       target: "_blank",
       rel: "noreferrer",
-      textContent: "Click here to send your enquiry.",
+      textContent: fallbackText,
     }));
   }
+}
 
-  form.reset();
+bookingForm?.addEventListener("submit", (event) => {
+  event.preventDefault();
+
+  const formData = new FormData(bookingForm);
+  const getValue = (name) => formData.get(name)?.toString().trim() || "-";
+  const message = [
+    "Hi SG Booth Rental, I would like to book a booth.",
+    "",
+    `Name: ${getValue("name")}`,
+    `Contact: ${getValue("contact")}`,
+    `Business / Brand: ${getValue("business")}`,
+    `Product category: ${getValue("category")}`,
+    `Preferred venue / date: ${getValue("dates")}`,
+    `Booth type: ${getValue("package")}`,
+    `Rental duration: ${getValue("duration")}`,
+    `Deposit option: ${getValue("deposit")}`,
+    `Payment method: ${getValue("payment")}`,
+    `Message: ${getValue("message")}`,
+  ].join("\n");
+
+  openWhatsapp(message, bookingNote, "Click here to send your booking.");
+  bookingForm.reset();
 });
