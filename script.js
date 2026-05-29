@@ -6,7 +6,7 @@ const dateInput = document.querySelector('input[name="dates"]');
 const packageInput = document.querySelector('input[name="package"]');
 const packageButtons = document.querySelectorAll(".package-select");
 const floatingWhatsapp = document.querySelector(".floating-whatsapp");
-const whatsappNumber = "60103787851";
+const whatsappNumber = "6594557473";
 const monthTabs = document.querySelectorAll(".month-tab");
 const availabilityList = document.querySelector(".availability-list");
 const locationCount = document.querySelector(".location-count");
@@ -254,20 +254,52 @@ function simplifyVenue(venue) {
     .trim();
 }
 
+function prepareAvailabilityItems(items) {
+  const seen = new Set();
+
+  return items.reduce((prepared, item) => {
+    const venue = simplifyVenue(item.venue);
+    const key = `${item.date}::${venue}`;
+
+    if (seen.has(key)) return prepared;
+    seen.add(key);
+
+    prepared.push({ ...item, venue });
+    return prepared;
+  }, []);
+}
+
+function groupByDate(items) {
+  return items.reduce((groups, item) => {
+    const existing = groups.find((group) => group.date === item.date);
+
+    if (existing) {
+      existing.items.push(item);
+    } else {
+      groups.push({ date: item.date, items: [item] });
+    }
+
+    return groups;
+  }, []);
+}
+
 function renderAvailability(month) {
   if (!availabilityList) return;
 
   const data = monthlyAvailability[month];
+  const items = prepareAvailabilityItems(data?.items || []);
+  const groups = groupByDate(items);
+
   monthTabs.forEach((tab) => {
     tab.classList.toggle("active", tab.dataset.month === month);
   });
 
   if (locationCount) {
-    const count = data?.items.length || 0;
+    const count = items.length;
     locationCount.innerHTML = `<strong>${count}</strong><span>${count === 1 ? "location" : "locations"}</span>`;
   }
 
-  if (!data || data.items.length === 0) {
+  if (!data || items.length === 0) {
     availabilityList.innerHTML = `
       <div class="availability-empty">
         <span>${data?.title || "Coming Soon"}</span>
@@ -280,16 +312,21 @@ function renderAvailability(month) {
 
   availabilityList.innerHTML = `
     <div class="availability-grid">
-      ${data.items.map((item) => {
-        const venue = simplifyVenue(item.venue);
-
-        return `
-        <button class="availability-card availability-select" type="button" data-venue="${escapeHtml(venue)}" data-date="${escapeHtml(item.date)}">
-          <span class="availability-date">${escapeHtml(item.date)}</span>
-          <strong>${escapeHtml(venue)}</strong>
-        </button>
-      `;
-      }).join("")}
+      ${groups.map((group) => `
+        <section class="date-group" aria-label="${escapeHtml(group.date)} booth locations">
+          <div class="date-group-header">
+            <span class="availability-date">${escapeHtml(group.date)}</span>
+            <strong>${group.items.length} ${group.items.length === 1 ? "location" : "locations"}</strong>
+          </div>
+          <div class="date-group-scroll">
+            ${group.items.map((item) => `
+              <button class="availability-card availability-select" type="button" data-venue="${escapeHtml(item.venue)}" data-date="${escapeHtml(item.date)}">
+                <strong>${escapeHtml(item.venue)}</strong>
+              </button>
+            `).join("")}
+          </div>
+        </section>
+      `).join("")}
     </div>
   `;
 }
