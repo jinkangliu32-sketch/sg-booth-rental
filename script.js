@@ -9,7 +9,7 @@ const floatingWhatsapp = document.querySelector(".floating-whatsapp");
 const whatsappNumber = "6594557473";
 const monthTabs = document.querySelectorAll(".month-tab");
 const availabilityList = document.querySelector(".availability-list");
-const locationCount = document.querySelector(".location-count");
+const faqQuestions = document.querySelectorAll(".faq-question");
 
 const monthlyAvailability = {
   jun: {
@@ -294,17 +294,12 @@ function renderAvailability(month) {
     tab.classList.toggle("active", tab.dataset.month === month);
   });
 
-  if (locationCount) {
-    const count = items.length;
-    locationCount.innerHTML = `<strong>${count}</strong><span>${count === 1 ? "location" : "locations"}</span>`;
-  }
-
   if (!data || items.length === 0) {
     availabilityList.innerHTML = `
       <div class="availability-empty">
-        <span>${data?.title || "Coming Soon"}</span>
-        <h3>Availability list coming soon.</h3>
-        <p>Send us your preferred month and product category. We will check booth options for you.</p>
+        <span>Upcoming Venue Updates</span>
+        <h3>New locations released monthly.</h3>
+        <p>Mid-Autumn 2026 venues are updating soon. Send us your preferred month and product category.</p>
       </div>
     `;
     return;
@@ -358,6 +353,23 @@ packageButtons.forEach((button) => {
     packageInput.value = button.dataset.package || "";
     document.querySelector("#contact").scrollIntoView({ behavior: "smooth" });
     note.textContent = `${packageInput.value} selected. Complete the form to send on WhatsApp.`;
+  });
+});
+
+faqQuestions.forEach((button) => {
+  button.addEventListener("click", () => {
+    const item = button.closest(".faq-item");
+    const willOpen = !item.classList.contains("open");
+
+    faqQuestions.forEach((question) => {
+      question.closest(".faq-item").classList.remove("open");
+      question.setAttribute("aria-expanded", "false");
+    });
+
+    if (willOpen) {
+      item.classList.add("open");
+      button.setAttribute("aria-expanded", "true");
+    }
   });
 });
 
