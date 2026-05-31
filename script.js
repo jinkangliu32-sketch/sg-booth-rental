@@ -3,8 +3,6 @@ const menuButton = document.querySelector(".menu-button");
 const bookingForm = document.querySelector(".booking-form");
 const bookingNote = document.querySelector(".booking-note");
 const bookingDateInput = document.querySelector('.booking-form [name="dates"]');
-const bookingPackageInput = document.querySelector('.booking-form [name="package"]');
-const packageButtons = document.querySelectorAll(".package-select");
 const floatingWhatsapp = document.querySelector(".floating-whatsapp");
 const whatsappNumber = "6594557473";
 const monthTabs = document.querySelectorAll(".month-tab");
@@ -388,21 +386,6 @@ if (floatingWhatsapp) {
   floatingWhatsapp.href = "#booking";
 }
 
-packageButtons.forEach((button) => {
-  button.addEventListener("click", () => {
-    const selectedPackage = button.dataset.package || "";
-
-    if (bookingPackageInput) setSelectValue(bookingPackageInput, selectedPackage);
-
-    document.querySelector("#booking").scrollIntoView({ behavior: "smooth" });
-    history.replaceState(null, "", "#booking");
-
-    if (bookingNote) {
-      bookingNote.textContent = `${selectedPackage} selected. Complete booking details to send on WhatsApp.`;
-    }
-  });
-});
-
 faqQuestions.forEach((button) => {
   button.addEventListener("click", () => {
     const item = button.closest(".faq-item");
@@ -451,7 +434,6 @@ bookingForm?.addEventListener("submit", (event) => {
     `Business / Brand: ${getValue("business")}`,
     `Product category: ${getValue("category")}`,
     `Preferred venue / date: ${getValue("dates")}`,
-    `Booth type: ${getValue("package")}`,
     `Rental duration: ${getValue("duration")}`,
     `Deposit option: ${getValue("deposit")}`,
     `Payment method: ${getValue("payment")}`,
